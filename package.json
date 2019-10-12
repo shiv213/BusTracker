@@ -1,0 +1,26 @@
+{
+  "name": "bustracker",
+  "version": "1.0.0",
+  "description": "webapp to locate your bus",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shiv213/BusTracker.git"
+  },
+  "keywords": [
+    "bus",
+    "tracker"
+  ],
+  "author": "Shiv Trivedi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shiv213/BusTracker/issues"
+  },
+  "homepage": "https://github.com/shiv213/BusTracker#readme",
+  "dependencies": {
+    "interactjs": "^1.6.2"
+  }
+}
