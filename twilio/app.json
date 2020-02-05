@@ -1,0 +1,6 @@
+{
+  "name": "BuSMS",
+  "description": "A webhook service to run the BuSMS platform",
+  "repository": "https://github.com/shiv213/BusTracker",
+  "keywords": ["busms", "express", "node", "technotitans"]
+}

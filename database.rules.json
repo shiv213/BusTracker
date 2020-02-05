@@ -1,7 +1,22 @@
 {
-  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
   "rules": {
-    ".read": false,
-    ".write": false
+    "bus": {
+      ".read": true,
+      ".write": "root.child('users').child(auth.uid).child('isAdmin').val() == true"
+    },
+    "sms": {
+      ".read": true,
+      ".write": true
+    },
+    "bugs": {
+      ".read": true,
+      ".write": true
+    },
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    }
   }
 }

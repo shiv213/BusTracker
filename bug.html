@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Bustracker - Report a Bug</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
+          integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+    <link rel="stylesheet" href="table.css"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
+    <script src="firebasejs.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
+
+</head>
+
+<body>
+<div style="text-align: center">
+    <h1><u>Report a Bug:</u></h1>
+    <h2>Having issues with our site?</h2>
+    <form id="bugReport">
+        <div class="inputs">
+            <input type="text" value="" name="NAME" class="required name" id="name" placeholder="Name:">
+            <br/>
+            <br/>
+            <input type="checkbox" name="check" value="male"> Bus Position Incorrect <br/>
+            <input type="checkbox" name="check" value="female"> Text Message Incorrect <br/>
+            <br/>
+            <br/>
+            <textarea rows=10 cols=50 name="TEXT" class="required text" id="text"
+                      placeholder="Other Issues:"></textarea>
+        </div>
+        <br/>
+        <input type="submit" class="btn" value="Submit" name="submit" id="submit">
+    </form>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+<script>
+    $("#bugReport").submit(function (event) {
+        event.preventDefault();
+        console.log("submitted");
+        alert("Thanks for the feedback!");
+        window.location.href = "index.html";
+        const c = $("#name").val(),
+            d = $("#text").val();
+        let e = false;
+        let f = false;
+        const ele = document.getElementsByName('check');
+        if (ele[0].checked) {
+            e = true;
+        }
+        if (ele[1].checked) {
+            f = true;
+        }
+        const g = {name: c, bug: d, busPositionIncorrect: e, smsIncorrect: f};
+        return database.ref("bugs").push(g);
+    });
+</script>
+</body>
+
+</html>

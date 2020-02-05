@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BusTracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
+          integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
+    <script src="firebasejs.js"></script>
+    <script src="https://kit.fontawesome.com/6f3b8e5e7b.js" crossorigin="anonymous"></script>
+    <style>
+        input {
+            text-align: center;
+            width: 45%;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center; margin-bottom: 5px;">BusTracker</h1>
+<div id="account" style="position: absolute; top: 3.5%; right: 3%;">
+    <a class="" href="account.html">
+        <i class="fas fa-user fa-2x" style="color: black"></i>
+    </a>
+</div>
+<div id="content" style="text-align: center; margin: 0px auto" align="center">
+    <form id="main">
+        <TABLE style="margin-left:auto;margin-right:auto;" BORDER="1">
+            <th><u>Lane 4</u></th>
+            <th><u>Lane 3</u></th>
+            <th><u>Lane 2</u></th>
+            <th><u>Lane 1</u></th>
+            <TR>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r1c1"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r1c2"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r1c3"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r1c4"></label></TD>
+            </TR>
+            <TR>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r2c1"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r2c2"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r2c3"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r2c4"></label></TD>
+            </TR>
+            <TR>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r3c1"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r3c2"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r3c3"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r3c4"></label></TD>
+            </TR>
+            <TR>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r4c1"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r4c2"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r4c3"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r4c4"></label></TD>
+            </TR>
+            <TR>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r5c1"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r5c2"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r5c3"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r5c4"></label></TD>
+            </TR>
+            <TR>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r6c1"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r6c2"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r6c3"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r6c4"></label></TD>
+            </TR>
+            <TR>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r7c1"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r7c2"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r7c3"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r7c4"></label></TD>
+            </TR>
+            <TR>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r8c1"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r8c2"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r8c3"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r8c4"></label></TD>
+            </TR>
+            <TR>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r9c1"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r9c2"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r9c3"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r9c4"></label></TD>
+            </TR>
+            <TR>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r10c1"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r10c2"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r10c3"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r10c4"></label></TD>
+            </TR>
+            <TR>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r11c1"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r11c2"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r11c3"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r11c4"></label></TD>
+            </TR>
+            <TR>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r12c1"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r12c2"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r12c3"></label></TD>
+                <TD><label><input type="number" pattern="[0-9]*" inputmode="decimal" name="busNum" id="r12c4"></label></TD>
+            </TR>
+        </TABLE>
+        <h2 style="margin-bottom: 1%">Notes</h2>
+        <label for="notes"><textarea rows="5" cols="33" id="notes" style="text-align: center"></textarea></label>
+        <br/>
+        <br/>
+        <button id="save" type="submit">Save</button>
+        <br/>
+    </form>
+    <h3>
+        <a href="help.html">Help</a>
+    </h3>
+    <h3><a href="#" onclick="sendSMS(true)"><b>SEND SMS</b></a></h3>
+    <h3>
+        <a href="index.html">Bus Viewer</a>
+    </h3>
+</div>
+<script>
+    $(document).ready(function () {
+        $.getJSON("https://bustracker-nhs.firebaseio.com/bus/pos.json", function (result) {
+            $.each(result, function (i, field) {
+                $('#' + i).val(field);
+            });
+        });
+        $.getJSON("https://bustracker-nhs.firebaseio.com/bus.json", function (result) {
+            $("#notes").val(result["note"]);
+        });
+        $('#main').submit(function (event) {
+            event.preventDefault();
+            if (user == null) {
+                alert('You are not signed in!');
+                window.location.replace("index.html");
+            }
+            database.ref('users/' + user.uid).child('isAdmin').once('value').then(function (snapshot) {
+                // console.log(typeof snapshot.val());
+                if (snapshot.val() === true) {
+                    let pos = {};
+                    let y;
+                    for (let i = 1; i <= 12; i++) {
+                        for (let j = 1; j <= 4; j++) {
+                            y = `r${i}c${j}`;
+                            pos[y]= $("#"+y).val();
+                            // x.push({})
+                        }
+                    }
+                    console.log(pos);
+                    database.ref().child('bus').update({
+                        pos,
+                        note: $("#notes").val()
+                    });
+                } else {
+                    alert('You are not authenticated to do that!');
+                    window.location.replace("index.html");
+                }
+            });
+            alert("Saved!");
+        });
+    })
+    ;
+</script>
+</body>
+</html>

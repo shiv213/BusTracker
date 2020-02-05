@@ -23,255 +23,133 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
+    <script src="firebasejs.js"></script>
+    <script src="https://kit.fontawesome.com/6f3b8e5e7b.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
-<h1 style="text-align: center; margin-bottom: 5px;">BusTracker</h1>
-<!--<div class="draggable"> Draggable Element</div>-->
-<div class="divTable" style="margin: 0 auto; text-align: center; width: 99%; border: 1px solid #000;">
-    <div class="divTableBody">
-        <div class="divTableRow" style="font-size: 50%; color: gray; height: 5%">
-            <div class="divTableCell">Lane 1
-            </div>
-            <div class="divTableCell">Lane 2
-            </div>
-            <div class="divTableCell">Lane 3
-            </div>
-            <div class="divTableCell">Lane 4
-            </div>
-        </div>
-        <div class="divTableRow" style="height: 5%">
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-        </div>
-        <div class="divTableRow" style="height: 5%">
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-        </div>
-        <div class="divTableRow" style="height: 5%">
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-        </div>
-        <div class="divTableRow" style="height: 5%">
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-        </div>
-        <div class="divTableRow" style="height: 5%">
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-        </div>
-        <div class="divTableRow" style="height: 5%">
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-<!--                 <div class="draggable">1234</div> -->
-            </div>
-        </div>
-        <div class="divTableRow" style="height: 5%">
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-<!--                 <div class="draggable">1234</div> -->
-            </div>
-        </div>
-        <div class="divTableRow" style="height: 5%">
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-<!--                 <div class="draggable">1234</div> -->
-            </div>
-            <div class="divTableCell">
-                <div class="draggable">1234</div>
-            </div>
-            <div class="divTableCell">
-<!--                 <div class="draggable">1234</div> -->
-            </div>
-        </div>
-    </div>
+<h1 style="text-align: center; margin-bottom: 5px;"><u>BusTracker</u></h1>
+<div id="account" style="position: absolute; top: 3.5%; right: 3%;">
+    <a class="" href="account.html">
+        <i class="fas fa-user fa-2x" style="color: black"></i>
+    </a>
 </div>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<!--<script src="/__/firebase/6.6.1/firebase-app.js"></script>-->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-database.js"></script>
-<!-- TODO: Add SDKs for Firebase products that you want to use
-https://firebase.google.com/docs/web/setup#reserved-urls -->
-<!--<script src="/__/firebase/init.js"></script>-->
-<script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+<div id="content" align="center">
+    <h3 id="updates" style="margin: 0.5%" hidden><b>Updates:</b></h3>
+    <h4 id="notes" style="margin: 1%; color: darkred"></h4>
+    <table border="1">
+        <th><u>Lane 4</u></th>
+        <th><u>Lane 3</u></th>
+        <th><u>Lane 2</u></th>
+        <th><u>Lane 1</u></th>
+        <tr>
+            <td id="r1c1"></td>
+            <td id="r1c2"></td>
+            <td id="r1c3"></td>
+            <td id="r1c4"></td>
+        </tr>
+        <tr>
+            <td id="r2c1"></td>
+            <td id="r2c2"></td>
+            <td id="r2c3"></td>
+            <td id="r2c4"></td>
+        </tr>
+        <tr>
+            <td id="r3c1"></td>
+            <td id="r3c2"></td>
+            <td id="r3c3"></td>
+            <td id="r3c4"></td>
+        </tr>
+        <tr>
+            <td id="r4c1"></td>
+            <td id="r4c2"></td>
+            <td id="r4c3"></td>
+            <td id="r4c4"></td>
+        </tr>
+        <tr>
+            <td id="r5c1"></td>
+            <td id="r5c2"></td>
+            <td id="r5c3"></td>
+            <td id="r5c4"></td>
+        </tr>
+        <tr>
+            <td id="r6c1"></td>
+            <td id="r6c2"></td>
+            <td id="r6c3"></td>
+            <td id="r6c4"></td>
+        </tr>
+        <tr>
+            <td id="r7c1"></td>
+            <td id="r7c2"></td>
+            <td id="r7c3"></td>
+            <td id="r7c4"></td>
+        </tr>
+        <tr>
+            <td id="r8c1"></td>
+            <td id="r8c2"></td>
+            <td id="r8c3"></td>
+            <td id="r8c4"></td>
+        </tr>
+        <tr>
+            <td id="r9c1"></td>
+            <td id="r9c2"></td>
+            <td id="r9c3"></td>
+            <td id="r9c4"></td>
+        </tr>
+        <tr>
+            <td id="r10c1"></td>
+            <td id="r10c2"></td>
+            <td id="r10c3"></td>
+            <td id="r10c4"></td>
+        </tr>
+        <tr>
+            <td id="r11c1"></td>
+            <td id="r11c2"></td>
+            <td id="r11c3"></td>
+            <td id="r11c4"></td>
+        </tr>
+        <tr>
+            <td id="r12c1"></td>
+            <td id="r12c2"></td>
+            <td id="r12c3"></td>
+            <td id="r12c4"></td>
+        </tr>
+    </table>
+</div>
+<h3 style="position: absolute; top: 50%; right: 0.75%; writing-mode: vertical-rl; text-orientation: upright;">Bus Canopy</h3>
 <script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyD9eBYKEv4Oxd77lic4B6ecJHnlCd52GPY",
-        authDomain: "bustracker-nhs.firebaseapp.com",
-        databaseURL: "https://bustracker-nhs.firebaseio.com",
-        projectId: "bustracker-nhs",
-        storageBucket: "bustracker-nhs.appspot.com",
-        messagingSenderId: "103544439176",
-        appId: "1:103544439176:web:a0b0fee8fff6dc10f57a3d",
-        measurementId: "G-Y117NQCTVX"
-    };
-
-    // // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
-
-    const position = {
-        x: 0,
-        y: 0
-    };
-    var width = document.querySelector("div.divTableCell").offsetWidth;
-    var height = document.querySelector("div.divTableCell").offsetHeight;
-    // var element = document.getElementById('grid-snap');
-    // var element = document.getElementsByClassName('draggable')[0];
-
-    var x = 0;
-    var y = 0;
-    document.querySelectorAll(".draggable").forEach(element => {
-        interact(element).draggable({
-            modifiers: [interact.modifiers.snap({
-                targets: [interact.createSnapGrid({
-                    x: width,
-                    y: height
-                })],
-                range: Infinity,
-                relativePoints: [{
-                    x: 0,
-                    y: 0
-                }],
-                offset: 'self',
-                limits: {
-                    top: 0,
-                    left: 0,
-                    bottom: 0,
-                    height: 0
+    $(document).ready(function () {
+        $.getJSON("https://bustracker-nhs.firebaseio.com/bus/pos.json", function (result) {
+            $.each(result, function (i, field) {
+                if (field.includes("-")) {
+                    document.getElementById(i).innerText = field.replace("-", "");
+                    document.getElementById(i).style.color = "darkred";
+                } else {
+                    document.getElementById(i).innerText = field;
                 }
-            }), interact.modifiers.restrict({
-                restriction: document.getElementsByClassName('draggable')[0].parentNode.parentNode.parentNode,
-                elementRect: {
-                    top: 0,
-                    left: 0,
-                    bottom: 1,
-                    right: 1
-                },
-                endOnly: true
-            })],
-            inertia: true,
-            onmove: dragMoveListener,
-            onend: function (event) {
-                console.log('moved a distance of ' +
-                    (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-                        Math.pow(event.pageY - event.y0, 2) | 0))
-                        .toFixed(2) + 'px');
+                // console.log(i + " " + field);
+                // $('#' + i).innerText.html(field);
+            });
+        });
+        $.getJSON("https://bustracker-nhs.firebaseio.com/bus.json", function (result) {
+            let x = result["note"].replace(/\n/g, "<br>");
+            if (x !== "") {
+                document.getElementById("updates").hidden = false;
+                document.getElementById("notes").innerHTML = x;
             }
         });
 
-        function dragMoveListener(event) {
-            var target = event.target;
-            // keep the dragged position in the data-x/data-y attributes
-            var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-            var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-
-            // translate the element
-            target.style.webkitTransform =
-                target.style.transform =
-                    'translate(' + x + 'px, ' + y + 'px)';
-
-            // update the posiion attributes
-            target.setAttribute('data-x', x);
-            target.setAttribute('data-y', y);
-        }
-
-//         this is used later in the resizing and gesture demos
-//         window.dragMoveListener = dragMoveListener;
-
-        var gridTarget = interact.createSnapGrid({
-            // can be a pair of x and y, left and top,
-            // right and bottom, or width, and height
-            x: width,
-            y: height,
-
-            // optional
-            range: 40,
-
-            // optional
-            offset: {
-                x: 0,
-                y: 0
-            },
-
-            // optional
-            limits: {
-                top: 0,
-                left: 0,
-                bottom: 500,
-                height: 500
-            }
-        });
-    })
-
+    });
 </script>
+<h4 style="font-family: 'Open Sans', sans-serif; text-align: center">Made with <span style="color: #e25555;">&#9829;</span> by the <a href="https://technotitans.org/">Techno Titans</a></h4>
+<h5 style="text-align: center"><a href="bug.html">Report a Bug <i class="fas fa-bug"></i></a></h5>
 </body>
 </html>

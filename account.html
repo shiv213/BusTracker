@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Bustracker - Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"
+          integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+    <link rel="stylesheet" href="table.css"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-analytics.js"></script>
+    <script src="firebasejs.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
+    <style>
+        .firebaseui-card-footer {
+            display: none
+        }
+    </style>
+</head>
+
+<body>
+<script>
+    // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+    //     .then(function () {
+    //         // Existing and future Auth states are now persisted in the current
+    //         // session only. Closing the window would clear any existing state even
+    //         // if a user forgets to sign out.
+    //         // ...
+    //         // New sign-in will be persisted with session persistence.
+    //         return firebase.auth().signInWithEmailAndPassword(email, password);
+    //     })
+    //     .catch(function (error) {
+    //         // Handle Errors here.
+    //         let errorCode = error.code;
+    //         let errorMessage = error.message;
+    //     });
+    // window.addEventListener('DOMContentLoaded', (event) => {
+    let ui = new firebaseui.auth.AuthUI(firebase.auth());
+    const urlParams = new URLSearchParams(window.location.search);
+    const isCheckout = (urlParams.get('checkout') === 'true');
+    let uiConfig = {
+        callbacks: {
+            signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+                // User successfully signed in.
+                // Return type determines whether we continue the redirect automatically
+                // or whether we leave that to developer to handle.
+                // window.location.href = 'editor.html';
+                return false;
+            },
+            uiShown: function () {
+                // The widget is rendered.
+                // Hide the loader.
+                document.getElementById('loader').style.display = 'none';
+            }
+        },
+        // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+        signInFlow: 'popup',
+        signInSuccessUrl: 'editor.html',
+        signInOptions: [
+            // Leave the lines as is for the providers you want to offer your users.
+            {
+                provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                scopes: [
+                    'email',
+                    'profile'
+                ],
+                customParameters: {
+                    // Forces account selection even when one account
+                    // is available.
+                    prompt: 'select_account'
+                }
+            },
+            // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+            // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+            // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+            firebase.auth.EmailAuthProvider.PROVIDER_ID
+            // firebase.auth.PhoneAuthProvider.PROVIDER_ID
+        ],
+        // Terms of service url.
+        tosUrl: '<your-tos-url>',
+        // Privacy policy url.
+        privacyPolicyUrl: '<your-privacy-policy-url>'
+    };
+    // console.log(user);
+    window.addEventListener('load', function () {
+        if (typeof user === 'undefined' || user === null || !user) {
+            document.getElementById('login').hidden = false;
+            ui.start('#firebaseui-auth-container', uiConfig);
+        } else {
+            updateLoggedIn();
+        }
+    });
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (!user) {
+            // document.getElementById('login').hidden = false;
+            ui.start('#firebaseui-auth-container', uiConfig);
+        } else {
+            updateLoggedIn();
+        }
+    });
+
+    function updateLoggedIn() {
+
+        document.getElementById('name').innerText = window.name;
+        document.getElementById('email').innerText = window.email;
+        if (window.photoUrl != null) {
+            document.getElementById('profilePicture').src = window.photoUrl;
+            document.getElementById("profilePicture").height = window.innerHeight * .2;
+            document.getElementById("profilePicture").alt = window.name;
+        } else {
+            document.getElementById("profilePicture").className = "fas fa-user fa-7x";
+        }
+
+        document.getElementById('profile').hidden = false;
+        document.getElementById('login').hidden = true;
+    }
+</script>
+<h1 style="text-align: center; margin-bottom: 5%;">BusTracker Admin Panel</h1>
+
+<div id="login" style="padding-top: 1%" hidden>
+    <h1 style="text-align: center">Sign Up/Log In</h1>
+    <div id="firebaseui-auth-container"></div>
+    <div style="text-align: center" id="loader">Loading...</div>
+</div>
+<div style="text-align: center" id="profile" hidden>
+    <img style="border-radius: 50%" id="profilePicture" src=""/>
+    <br/>
+    <h1 style="" id="name"></h1>
+    <h2 id="email"></h2>
+    <h3><a href="#" onclick="sendSMS(false)"><b>SEND SMS</b></a></h3>
+    <h3><a href="editor.html">Bus Editor</a></h3>
+    <h3><a href="index.html">Bus Viewer</a></h3>
+    <h2><a href="#" onclick="logOut()">Logout</a></h2>
+</div>
+<div class="container"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+</body>
+
+</html>

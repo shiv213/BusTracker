@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/shiv213/BusTracker#readme",
   "dependencies": {
-    "interactjs": "^1.6.2"
+    "express": "^4.17.1",
+    "firebase": "^7.7.0",
+    "interactjs": "^1.6.2",
+    "twilio": "^3.39.3"
   }
 }
