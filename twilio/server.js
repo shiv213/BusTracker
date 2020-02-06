@@ -6,8 +6,8 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 const firebase = require('firebase/app');
 require('firebase/database');
-const accountSid = 'AC6d7b00dc8e42ad97c8898928f35f802d';
-const authToken = '995cce2b0621e06bd110e6586ff09075';
+const accountSid = process.env.accountSid;
+const authToken = process.env.authToken;
 const client = require('twilio')(accountSid, authToken);
 const port = process.env.PORT || 8080;
 const Sentry = require('@sentry/node');
@@ -35,10 +35,16 @@ app.post('/sms', (req, res) => {
     console.log(req.body.From);
     if (body.startsWith("follow ")) {
         let rawNum = body.substring(7);
-        firebase.database().ref('sms/' + fromX).set({
-            busNum: rawNum
-        });
-        twiml.message(`Welcome to BuSMS! You are now following Bus ${rawNum}!`);
+        if (isNaN(parseInt(rawNum))) {
+            twiml.message(
+                'Sorry, I don\'t understand! \nReply HELP for help. \nReply STOP to unsubscribe. Msg&Data rates may apply.'
+            );
+        } else {
+            firebase.database().ref('sms/' + fromX).set({
+                busNum: rawNum
+            });
+            twiml.message(`Welcome to BuSMS! You are now following Bus ${rawNum}! \nReply HELP for help. \nReply STOP to unsubscribe. Msg&Data rates may apply.`);
+        }
     } else if (["cancel", "end", "quit", "stop", "stopall", "unsubscribe", "start", "unstop", "yes", "help", "info"].indexOf(body) >= 0) {
     } else {
         twiml.message(
@@ -84,7 +90,7 @@ function getPos(key, val) {
                     client.messages
                         .create({
                             body: `Bus ${val} is the ${suffix(x.substring(1, x.indexOf('c')))} bus in Lane ${-(x.charAt(x.length - 1))+5} today!`,
-                            from: '+14049990287',
+                            from: '+14047774287',
                             to: key
                         })
                         .then(message => console.log(message.sid));
@@ -99,7 +105,7 @@ function getPos(key, val) {
                 client.messages
                     .create({
                         body: `Your bus number is either invalid or is temporarily being replaced by another, please check https://bustracker-nhs.web.app/ for updates!`,
-                        from: '+14049990287',
+                        from: '+14047774287',
                         to: key
                     })
                     .then(message => console.log(message.sid));

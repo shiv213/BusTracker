@@ -36,7 +36,7 @@
 
 </head>
 <body>
-<h1 style="text-align: center; margin-bottom: 5px;"><u>BusTracker</u></h1>
+<a style="color: black" href="index.html"><h1 style="text-align: center; margin-bottom: 5px;"><u>BusTracker</u></h1></a>
 <div id="account" style="position: absolute; top: 3.5%; right: 3%;">
     <a class="" href="account.html">
         <i class="fas fa-user fa-2x" style="color: black"></i>
@@ -46,10 +46,12 @@
     <h3 id="updates" style="margin: 0.5%" hidden><b>Updates:</b></h3>
     <h4 id="notes" style="margin: 1%; color: darkred"></h4>
     <table border="1">
-        <th><u>Lane 4</u></th>
-        <th><u>Lane 3</u></th>
-        <th><u>Lane 2</u></th>
-        <th><u>Lane 1</u></th>
+        <tr style="border-bottom: 3px solid #000000;">
+            <td><b>Lane 4</b></td>
+            <td><b>Lane 3</b></td>
+            <td><b>Lane 2</b></td>
+            <td><b>Lane 1</b></td>
+        </tr>
         <tr>
             <td id="r1c1"></td>
             <td id="r1c2"></td>
@@ -124,7 +126,7 @@
         </tr>
     </table>
 </div>
-<h3 style="position: absolute; top: 50%; right: 0.75%; writing-mode: vertical-rl; text-orientation: upright;">Bus Canopy</h3>
+<h3 id="canopyLabel" style="margin: 0; position: absolute; top: 50%; right:0.2%; writing-mode: vertical-rl;">Bus Canopy</h3>
 <script>
     $(document).ready(function () {
         $.getJSON("https://bustracker-nhs.firebaseio.com/bus/pos.json", function (result) {
@@ -149,7 +151,9 @@
 
     });
 </script>
-<h4 style="font-family: 'Open Sans', sans-serif; text-align: center">Made with <span style="color: #e25555;">&#9829;</span> by the <a href="https://technotitans.org/">Techno Titans</a></h4>
-<h5 style="text-align: center"><a href="bug.html">Report a Bug <i class="fas fa-bug"></i></a></h5>
 </body>
+<footer>
+    <h4 style="font-family: 'Open Sans', sans-serif; text-align: center">Made with <span style="color: #e25555;">&#9829;</span> by the <a href="https://technotitans.org/">Techno Titans</a></h4>
+    <h5 style="text-align: center"><a href="bug.html">Report a Bug <i class="fas fa-bug"></i></a></h5>
+</footer>
 </html>

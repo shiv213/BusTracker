@@ -47,20 +47,23 @@ function sendSMS(input) {
     if (user != null) {
         database.ref('users/' + user.uid).child('isAdmin').once('value').then(function (snapshot) {
             if (snapshot.val() === true) {
-                let x = confirm("Are you sure? This will send a text message to every subscribed phone number!");
-                if (x === true) {
-                    const http = new XMLHttpRequest();
-                    const url = 'https://busms.herokuapp.com/alert';
-                    const params = 'send=true';
-                    http.open('POST', url, true);
-                    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                    http.onreadystatechange = function () {
-                        if (http.readyState === 4 && http.status === 200) {
-                            alert(http.responseText);
-                        }
-                    };
-                    http.send(params);
-                }
+                database.ref('sms').once("value").then(function (snapshot) {
+                    const count = Object.keys(snapshot.val()).length;
+                    let x = confirm(`Are you sure? This will send a text message to every subscribed phone number (${count} Numbers)!`);
+                    if (x === true) {
+                        const http = new XMLHttpRequest();
+                        // const url = 'https://busms.herokuapp.com/alert';
+                        const params = 'send=true';
+                        http.open('POST', url, true);
+                        http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                        http.onreadystatechange = function () {
+                            if (http.readyState === 4 && http.status === 200) {
+                                alert(http.responseText);
+                            }
+                        };
+                        http.send(params);
+                    }
+                });
             } else {
                 alert('You are not authenticated to do that!');
                 window.location.replace("index.html");
