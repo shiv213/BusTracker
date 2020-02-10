@@ -52,7 +52,7 @@ function sendSMS(input) {
                     let x = confirm(`Are you sure? This will send a text message to every subscribed phone number (${count} Numbers)!`);
                     if (x === true) {
                         const http = new XMLHttpRequest();
-                        // const url = 'https://busms.herokuapp.com/alert';
+                        const url = 'https://busms.herokuapp.com/alert';
                         const params = 'send=true';
                         http.open('POST', url, true);
                         http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
