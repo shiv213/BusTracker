@@ -12,6 +12,10 @@
       ".read": true,
       ".write": true
     },
+    "info": {
+      ".read": true,
+      ".write": true
+    },
     "users": {
       "$uid": {
         ".read": "$uid === auth.uid",

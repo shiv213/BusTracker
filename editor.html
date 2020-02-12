@@ -133,10 +133,11 @@
         <button id="save" type="submit">Save</button>
         <br/>
     </form>
+    <h3><a href="#" onclick="sendSMS(true)"><b>SEND SMS</b></a></h3>
+    <h3 id="lastSent"></h3>
     <h3>
         <a href="help.html">Help</a>
     </h3>
-    <h3><a href="#" onclick="sendSMS(true)"><b>SEND SMS</b></a></h3>
     <h3>
         <a href="index.html">Bus Viewer</a>
     </h3>
@@ -183,6 +184,14 @@
         });
     })
     ;
+</script>
+<script>
+    $.getJSON("https://bustracker-nhs.firebaseio.com/info.json", function (result) {
+        let x = result["lastSent"];
+        if (x !== "") {
+            document.getElementById("lastSent").innerHTML = "Last Sent: " + x;
+        }
+    });
 </script>
 </body>
 <footer>

@@ -12,6 +12,7 @@ const client = require('twilio')(accountSid, authToken);
 const port = process.env.PORT || 8080;
 const Sentry = require('@sentry/node');
 Sentry.init({ dsn: 'https://5d57f57b93464f039a95a50637b285e7@sentry.io/2192445' });
+
 try {
     firebase.initializeApp({
         apiKey: "AIzaSyD9eBYKEv4Oxd77lic4B6ecJHnlCd52GPY",
@@ -74,7 +75,9 @@ app.post('/alert', (req, res) => {
             });
         });
     });
-
+    firebase.database().ref('info/').set({
+        lastSent: new Date().toLocaleString()
+    });
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end();
 });

@@ -140,8 +140,7 @@
         document.getElementById('login').hidden = true;
     }
 </script>
-<h1 style="text-align: center; margin-bottom: 5%;">BusTracker Admin Panel</h1>
-
+<h1 style="text-align: center;">BusTracker Admin Panel</h1>
 <div id="login" style="padding-top: 1%" hidden>
     <h1 style="text-align: center">Sign Up/Log In</h1>
     <div id="firebaseui-auth-container"></div>
@@ -152,7 +151,11 @@
     <br/>
     <h1 style="" id="name"></h1>
     <h2 id="email"></h2>
+    <h3>
+        <a href="help.html">Help</a>
+    </h3>
     <h3><a href="#" onclick="sendSMS(false)"><b>SEND SMS</b></a></h3>
+    <h3 id="lastSent"></h3>
     <h3><a href="editor.html">Bus Editor</a></h3>
     <h3><a href="index.html">Bus Viewer</a></h3>
     <h2><a href="#" onclick="logOut()">Logout</a></h2>
@@ -162,6 +165,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+<script>
+    $.getJSON("https://bustracker-nhs.firebaseio.com/info.json", function (result) {
+        let x = result["lastSent"];
+        if (x !== "") {
+            document.getElementById("lastSent").innerHTML = "Last Sent: " + x;
+        }
+    });
+</script>
 </body>
 <footer>
     <h4 style="font-family: 'Open Sans', sans-serif; text-align: center">Made with <span style="color: #e25555;">&#9829;</span> by the <a href="https://technotitans.org/">Techno Titans</a></h4>
